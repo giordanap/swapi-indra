@@ -3,7 +3,7 @@ frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs14.x
   region: sa-east-1
   iamRoleStatements:
     - Effect: Allow
@@ -28,10 +28,10 @@ functions:
 
 resources:
   Resources:
-    PersonasTable:
+    PeopleTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: PersonasTable
+        TableName: PeopleTable
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
           - AttributeName: id
