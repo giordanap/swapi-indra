@@ -1,6 +1,7 @@
 const Controller = require("./controller");
-const { getPeople } = require("./functions/swapi");
 const { Person } = require("./models/person.class");
+const { Persona } = require("./models/persona.class");
+const { getPeople } = require("./functions/swapi");
 const cts = require("./constants/dydbTables");
 
 class PersonController extends Controller {
@@ -32,6 +33,35 @@ class PersonController extends Controller {
     const personas = [...personasApi, ...peopleApi];
 
     return personas;
+  }
+
+  async postPerson(event) {
+    const {
+      nombre,
+      genero,
+      origen,
+      peliculas,
+      especies,
+      vehiculos,
+      navesEspaciales,
+    } = event.body;
+
+    const newPersona = new Persona(
+      nombre,
+      genero,
+      origen,
+      peliculas,
+      especies,
+      vehiculos,
+      navesEspaciales
+    );
+
+    await super.insert(cts.TABLE, newPersona);
+
+    return {
+      status: 200,
+      body: JSON.stringify(newPersona),
+    };
   }
 }
 
