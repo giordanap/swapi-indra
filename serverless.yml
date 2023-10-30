@@ -10,7 +10,7 @@ provider:
       Action:
         - dynamodb:*
       Resource: 
-        - arn:aws:dynamodb:sa-east-1:862454797065:table/PersonasTable
+        - arn:aws:dynamodb:sa-east-1:862454797065:table/PeopleTable
 
 functions:
   getPeople:
