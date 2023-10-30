@@ -10,7 +10,7 @@ provider:
       Action:
         - dynamodb:*
       Resource: 
-      - arn:aws:dynamodb:sa-east-1:862454797065:table/PersonasTable
+        - arn:aws:dynamodb:sa-east-1:862454797065:table/PersonasTable
 
 functions:
   getPeople:
@@ -19,6 +19,12 @@ functions:
       - httpApi:
           path: /personas
           method: get
+  createPerson:
+    handler: src/router.addPerson
+    events:
+      - httpApi:
+          path: /personas
+          method: post
 
 resources:
   Resources:
